@@ -1,4 +1,5 @@
 EasyAdmin Maze Bank Teleport Add-On
+NOTE: THIS IS NOT A PLUGIN OR A RESOURCE, THIS IS A SNIPPET OF CODING TO ADD INTO YOUR EASYADMIN MENU FILES (GUI_C.LUA)
 
 Install snippet into: EasyAdmin/client/gui_c.lua near line 364 (between server menu and settings menu)
 
