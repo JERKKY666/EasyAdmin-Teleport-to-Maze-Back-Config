@@ -1,0 +1,31 @@
+--  TELEPORT TO / FROM MAZE BANK 
+	local tpMazeItem = NativeUI.CreateItem(
+		"Teleport: Maze Bank",
+		"Teleport to Maze Bank rooftop.\nUse again to return to your previous location."
+	)
+	mainMenu:AddItem(tpMazeItem)
+
+	tpMazeItem.Activated = function(ParentMenu, SelectedItem)
+		local ped = PlayerPedId()
+
+		-- If we already have a saved location, go back there
+		if lastLocation then
+			-- lastLocation is already used elsewhere in this script, so we reuse it
+			SetEntityCoords(ped, lastLocation.x, lastLocation.y, lastLocation.z, false, false, false, true)
+			local heading = GetEntityHeading(ped)
+			SetEntityHeading(ped, heading)
+
+			lastLocation = nil
+			TriggerEvent("EasyAdmin:showNotification", "Teleported back to previous location.")
+		else
+			-- Save current location, then go to Maze Bank
+			lastLocation = GetEntityCoords(ped)
+
+			-- Maze Bank rooftop (adjust if you use a custom MLO / spot)
+			SetEntityCoords(ped, -75.0, -818.0, 326.18, false, false, false, true)
+			SetEntityHeading(ped, 160.0)
+
+			TriggerEvent("EasyAdmin:showNotification", "Teleported to Maze Bank. Use this again to go back.")
+		end
+	end
+	--  END MAZE BANK BLOCK 
